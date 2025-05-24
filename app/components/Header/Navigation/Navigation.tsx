@@ -22,7 +22,7 @@ export const Navigation = () => {
         <div className='hidden md:block'>
           <ul className='flex gap-x-10 '>
             {navItems.map(({ label, href }) => (
-              <Link key={href} href={href} onClick={() => setIsOpen(false)} className={`text-xl ${pathname === href ? 'border-b-2' : ''}`}>
+              <Link key={href} href={href} onClick={() => setIsOpen(false)} className={`text-xl ${pathname === href ? 'border-b-2' : ''} hover:border-b-2 transition-all`}>
                 <li>{label}</li>
               </Link>
             ))}

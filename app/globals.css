@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -6,8 +6,8 @@
 }
 
 @theme {
-  --color-brand: #F5DB13;
-  --color-brand-foreground: #F2B807;
+  --color-brand: #f5db13;
+  --color-brand-foreground: #f2b807;
 }
 
 body {
