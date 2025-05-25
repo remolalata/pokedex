@@ -1,20 +1,19 @@
-import { PokemonDetail } from "@types";
-import { map } from "lodash-es";
+'use client'
+
+import { PokemonDetail } from '@types';
+import { map } from 'lodash-es';
+import { PokemonCard } from '@components';
 
 interface PokemonsProps {
-    pokemons: PokemonDetail[];
+  pokemons: PokemonDetail[];
 }
 
-export const Pokemons = ({
-    pokemons = []
-}: PokemonsProps) => {
-    return (
-        <div>
-            <ul>
-                {map(pokemons, (pokemon) => (
-                        <h3>{pokemon.name}</h3>
-                ))}
-            </ul>
-        </div>
-    )
-}
+export const Pokemons = ({ pokemons = [] }: PokemonsProps) => {
+  return (
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-6 lg:gap-x-8 lg:gap-y-8'>
+      {map(pokemons, (pokemon, index) => (
+        <PokemonCard key={index} pokemon={pokemon} />
+      ))}
+    </div>
+  );
+};

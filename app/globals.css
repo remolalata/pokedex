@@ -8,6 +8,8 @@
 @theme {
   --color-brand: #f5db13;
   --color-brand-foreground: #f2b807;
+  --color-brand-dark: #1d1e1d;
+  --color-brand-gray: #f5f5f5;
 }
 
 body {

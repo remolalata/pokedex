@@ -36,7 +36,7 @@ export const PokemonTypeButton = ({
         ${typeClass} ${className}`}
       {...props}
     >
-      {children || variant}
+      <span className='relative top-[-2px]'>{children || variant}</span>
     </button>
   );
 };

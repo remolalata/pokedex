@@ -1,15 +1,17 @@
-import { fetchPokemonList, fetchPokemonListsDetails } from '@api';
-import { parsePokemonListsToId } from '@helpers';
-import { Pokemons } from '@components';
+import { fetchFamousPokemons } from '@api';
+import { Layout, Pokemons } from '@components';
 
 export default async function PokedexPage() {
-  const { results: pokemonLists = [] } = await fetchPokemonList();
-
-  const pokemonWithId = parsePokemonListsToId(pokemonLists);
-
-  const pokemonListWithDetails = await fetchPokemonListsDetails(pokemonWithId);
+  const famousPokemons = await fetchFamousPokemons();
+  
 
   return (
-    <Pokemons pokemons={pokemonListWithDetails} />
-    )
+    <Layout>
+      <div className='p-5'>
+        <div className='container mx-auto lg:max-w-[800px]'>
+          <Pokemons pokemons={famousPokemons} />
+        </div>
+      </div>
+    </Layout>
+  );
 }

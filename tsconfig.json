@@ -32,7 +32,7 @@
       "@helpers": ["app/lib/helpers/index.ts"],
       "@helpers/*": ["app/lib/helpers/*"],
       "@types": ["app/lib/types/index.ts"],
-      "@types/*": ["app/lib/types/*"],
+      "@types/*": ["app/lib/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
