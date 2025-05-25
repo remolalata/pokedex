@@ -1,0 +1,1 @@
+export const SEE_POKEMONS = 'See Pokemons';

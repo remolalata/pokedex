@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className='p-5'>
+    <footer className='p-5 text-center lg:text-left'>
       <p>
         <span>Template by </span>
         <a

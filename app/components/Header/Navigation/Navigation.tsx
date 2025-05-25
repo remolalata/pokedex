@@ -4,8 +4,8 @@ import { navItems } from '@config';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export const Navigation = () => {
   const pathname = usePathname();

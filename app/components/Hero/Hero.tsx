@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { PokemonTypeButton } from '@components';
+import { SEE_POKEMONS } from '@config';
 
 export const Hero = () => {
   return (
@@ -13,6 +15,9 @@ export const Hero = () => {
               <span className='font-semibold'>Find</span> all your favorite <span className='font-semibold'>Pokémon</span>
             </h1>
             <p className='text-2xl lg:text-4xl lg:leading-tight'>You can know the type of Pokemon, its strengths, disadvantages and abilities</p>
+            <PokemonTypeButton variant='grass' size='large' className='w-full md:w-auto mt-10 md:px-8'>
+              {SEE_POKEMONS}
+            </PokemonTypeButton>
           </div>
         </div>
       </div>
