@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Footer } from '@components';
+import { Footer, Header } from '@components';
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,11 +15,14 @@ export const Layout = ({ children, variant = 'default' }: LayoutProps) => {
         : 'bg-brand-gray';
 
   return (
+    <>
+    <Header />
     <div className={`min-h-screen flex flex-col ${layoutClass}`}>
       <div className='flex-grow flex flex-col justify-between'>
         <main>{children}</main>
         <Footer />
       </div>
     </div>
+    </>
   );
 };

@@ -1,5 +1,5 @@
-import { map } from 'lodash-es';
 import { PokemonListItem, PokemonListItemWithId } from '@types';
+import { map } from 'lodash-es';
 
 export const parsePokemonListsToId = (pokemonLists: PokemonListItem[]): PokemonListItemWithId[] => {
   return map(pokemonLists, pokemon => {

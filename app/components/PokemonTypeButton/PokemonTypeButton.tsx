@@ -32,7 +32,7 @@ export const PokemonTypeButton = ({
     <button
       type='button'
       className={`px-4 ${roundedClass} ${sizeClass} transition duration-150
-        shadow-[inset_0_-4px_0_0_rgba(0,0,0,0.2)] active:translate-y-[2px] active:shadow-none
+        shadow-[inset_0_-4px_0_0_rgba(0,0,0,0.2)] active:translate-y-[2px] active:shadow-none cursor-pointer
         ${typeClass} ${className}`}
       {...props}
     >

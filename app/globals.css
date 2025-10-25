@@ -10,6 +10,13 @@
   --color-brand-foreground: #f2b807;
   --color-brand-dark: #1d1e1d;
   --color-brand-gray: #f5f5f5;
+  --color-error: #D93E30;
+}
+
+html,
+body {
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
 }
 
 body {

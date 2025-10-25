@@ -1,4 +1,4 @@
 export * from './PokemonCard';
-export * from './PokemonPopup';
+export * from './PokemonDetails';
 export * from './Pokemons';
 export * from './PokemonStat';

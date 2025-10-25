@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { PokemonTypeButton } from '@components';
 import { SEE_POKEMONS } from '@config';
+import Link from 'next/link';
 
 export const Hero = () => {
   return (
@@ -18,13 +19,15 @@ export const Hero = () => {
             <p className='text-2xl lg:text-4xl lg:leading-tight'>
               You can know the type of Pokemon, its strengths, disadvantages and abilities
             </p>
-            <PokemonTypeButton
-              variant='grass'
-              size='large'
-              className='w-full md:w-auto mt-10 md:px-8'
-            >
-              {SEE_POKEMONS}
-            </PokemonTypeButton>
+            <Link href='/pokedex'>
+              <PokemonTypeButton
+                variant='grass'
+                size='large'
+                className='w-full md:w-auto mt-10 md:px-8'
+              >
+                {SEE_POKEMONS}
+              </PokemonTypeButton>
+            </Link>
           </div>
         </div>
       </div>

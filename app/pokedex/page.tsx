@@ -4,7 +4,6 @@ import { Layout, Pokemons } from '@components';
 export default async function PokedexPage() {
   const famousPokemons = await fetchFamousPokemons();
   
-
   return (
     <Layout>
       <div className='p-5'>
