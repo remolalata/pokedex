@@ -2,58 +2,43 @@
 
 import { pokemonTypeColors } from '@/app/lib/constants';
 import { getImage } from '@/app/lib/helpers';
-import { PokemonStat, PokemonTypeButton } from '@components';
-import { PokemonDetail, PokemonType } from '@types';
-import { filter, first, map, take } from 'lodash-es';
+import { PokemonStat, PokemonTypeBadges } from '@components';
+import { PokemonDetail } from '@types';
+import { filter, first, map } from 'lodash-es';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 interface PokemonCardProps {
   pokemon: PokemonDetail;
 }
 
 export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
-  const primaryType = first(pokemon?.types);
-  const basicStats = filter(pokemon?.stats, s => ['attack', 'defense'].includes(s.stat.name));
-  const types = take(pokemon?.types, 2);
+  const primaryTypeName = first(pokemon.types)?.type?.name || 'normal';
+  const basicStats = useMemo(
+    () => filter(pokemon.stats, stat => ['attack', 'defense'].includes(stat.stat.name)),
+    [pokemon.stats],
+  );
 
   return (
-    <Link href={`pokemon/${pokemon?.name}`}>
-      <div className='relative flex shadow-xl rounded-lg bg-white overflow-hidden'>
-        <div className='w-1/3 p-4 flex flex-col gap-y-4'>
-          <div className='font-medium capitalize text-lg'>{pokemon?.name || ''}</div>
+    <Link href={`/pokemon/${pokemon.name}`}>
+      <div className='relative flex bg-white shadow-xl rounded-lg overflow-hidden'>
+        <div className='flex flex-col gap-y-4 p-4 w-1/3'>
+          <div className='font-medium text-lg capitalize'>{pokemon.name}</div>
           <div className='flex justify-between'>
-            {map(basicStats, (stat, index) => (
-              <PokemonStat key={index} stat={stat} />
+            {map(basicStats, stat => (
+              <PokemonStat key={stat.stat.name} stat={stat} />
             ))}
           </div>
         </div>
         <div className={`relative p-4 w-2/3 overflow-hidden`}>
-          <div
-            className={`absolute inset-0 ${pokemonTypeColors[primaryType?.type?.name || 'normal']} opacity-50 rounded-r-lg`}
-          ></div>
+          <div className={`absolute inset-0 ${pokemonTypeColors[primaryTypeName]} opacity-50 rounded-r-lg`}></div>
           <div className='relative h-40'>
-            <Image
-              src={getImage(pokemon)}
-              alt={pokemon.name}
-              fill
-              className='object-contain'
-            />
+            <Image src={getImage(pokemon)} alt={pokemon.name} fill className='object-contain' />
           </div>
         </div>
-        <div className='absolute bottom-4 left-4'>
-          <div className='flex gap-x-3'>
-            {map(types, (type, index) => (
-              <PokemonTypeButton
-                key={index}
-                variant={type?.type?.name as PokemonType}
-                rounded
-                className='px-0.5 !py-1 capitalize'
-              >
-                {type?.type?.name || ''}
-              </PokemonTypeButton>
-            ))}
-          </div>
+        <div className='bottom-4 left-4 absolute'>
+          <PokemonTypeBadges types={pokemon.types} />
         </div>
       </div>
     </Link>

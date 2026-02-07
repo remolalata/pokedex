@@ -1,6 +1,8 @@
 import { fetchFamousPokemons } from '@api';
 import { Layout, Pokemons } from '@components';
 
+export const revalidate = 3600;
+
 export default async function PokedexPage() {
   const famousPokemons = await fetchFamousPokemons();
   

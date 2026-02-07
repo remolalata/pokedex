@@ -13,7 +13,7 @@ export const fetchPokemonList = async (limit = 20, offset = 0): Promise<PokemonL
   return data;
 };
 
-export const fetchPokemon = async (nameOrId: string | number) => {
+export const fetchPokemon = async (nameOrId: string | number): Promise<PokemonDetail> => {
   const res = await fetch(endpoints.getPokemon(nameOrId));
 
   if (!res.ok) throw new Error(`Failed to fetch Pokémon with id or name: ${nameOrId}`);

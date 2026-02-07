@@ -20,7 +20,7 @@ export const Navigation = () => {
         </button>
 
         <div className='hidden md:block'>
-          <ul className='flex gap-x-10 '>
+          <ul className='flex gap-x-10'>
             {navItems.map(({ label, href }) => (
               <Link
                 key={href}
@@ -40,7 +40,7 @@ export const Navigation = () => {
           isOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className='flex flex-col gap-4 py-10 p-4 justify-center items-center'>
+        <div className='flex flex-col justify-center items-center gap-4 p-4 py-10'>
           <Image src={'/images/logo.svg'} alt='Pokedex' className='mb-4' width={138} height={51} />
           {navItems.map(({ label, href }) => (
             <Link
@@ -57,7 +57,7 @@ export const Navigation = () => {
 
       {isOpen && (
         <div
-          className='fixed inset-0 bg-gray-900 opacity-50 z-30'
+          className='z-30 fixed inset-0 bg-gray-900 opacity-50'
           onClick={() => setIsOpen(false)}
         />
       )}

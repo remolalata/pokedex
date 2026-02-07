@@ -1,17 +1,17 @@
-import Image from 'next/image';
 import { PokemonTypeButton } from '@components';
 import { SEE_POKEMONS } from '@config';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const Hero = () => {
   return (
     <div className='p-5'>
-      <div className='container mx-auto'>
-        <div className='flex flex-col lg:flex-row-reverse lg:items-center lg:justify-between lg:gap-x-10'>
-          <div className='relative h-72 md:h-96 lg:h-[500px] lg:w-1/2'>
+      <div className='mx-auto container'>
+        <div className='flex lg:flex-row-reverse flex-col lg:justify-between lg:items-center lg:gap-x-10'>
+          <div className='relative lg:w-1/2 h-72 md:h-96 lg:h-[500px]'>
             <Image src={'/images/hero.png'} alt='Hero' fill className='object-contain' />
           </div>
-          <div className='text-center lg:text-left font-medium space-y-3 lg:w-1/2'>
+          <div className='space-y-3 lg:w-1/2 font-medium lg:text-left text-center'>
             <h1 className='text-5xl md:text-7xl leading-tight'>
               <span className='font-semibold'>Find</span> all your favorite{' '}
               <span className='font-semibold'>Pokémon</span>
@@ -23,7 +23,7 @@ export const Hero = () => {
               <PokemonTypeButton
                 variant='grass'
                 size='large'
-                className='w-full md:w-auto mt-10 md:px-8'
+                className='mt-10 md:px-8 w-full md:w-auto'
               >
                 {SEE_POKEMONS}
               </PokemonTypeButton>

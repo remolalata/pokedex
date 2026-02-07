@@ -8,14 +8,14 @@ export const Logo = () => {
         <Image
           src={'/images/logo.svg'}
           alt='Pokedex'
-          className='block md:hidden'
+          className='md:hidden block'
           width={59}
           height={22}
         />
         <Image
           src={'/images/logo.svg'}
           alt='Pokedex'
-          className='hidden md:block lg:hidden'
+          className='hidden lg:hidden md:block'
           width={121}
           height={45}
         />

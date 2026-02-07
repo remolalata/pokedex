@@ -1,39 +1,16 @@
 'use client';
 
-import { fetchPokemon } from '@/app/lib/api';
+import { usePokemonSearch } from '@/app/hooks';
 import { PokemonCard, PokemonCardLoader, Search, SearchError } from '@components';
 import { PokemonDetail } from '@types';
 import { map } from 'lodash-es';
-import { useState } from 'react';
 
 interface PokemonsProps {
-  pokemons: PokemonDetail[];
+  pokemons: PokemonDetail[]
 }
 
 export const Pokemons = ({ pokemons: _pokemons }: PokemonsProps) => {
-  const [pokemons, setPokemons] = useState<PokemonDetail[]>(_pokemons);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSearch = async (query: string) => {
-    if (!query.trim()) {
-      setPokemons(_pokemons);
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const pokemon = await fetchPokemon(query.trim().toLowerCase());
-      setPokemons([pokemon]);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
-      setPokemons([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { pokemons, loading, error, handleSearch } = usePokemonSearch(_pokemons);
 
   return (
     <div>
@@ -52,8 +29,8 @@ export const Pokemons = ({ pokemons: _pokemons }: PokemonsProps) => {
 
       {!loading && !error && pokemons.length > 0 && (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-6 lg:gap-x-8 lg:gap-y-8'>
-          {map(pokemons, (pokemon, index) => (
-            <PokemonCard key={index} pokemon={pokemon} />
+          {map(pokemons, pokemon => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
         </div>
       )}

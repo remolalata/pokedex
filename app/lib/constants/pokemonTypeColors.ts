@@ -1,6 +1,6 @@
 export const pokemonTypeColors: Record<string, string> = {
   normal: 'bg-gray-400 text-white',
-  fire: 'bg-red-500 text-white',
+  fire: 'bg-red-600 text-white',
   water: 'bg-blue-500 text-white',
   grass: 'bg-green-500 text-white',
   electric: 'bg-yellow-400 text-black',
@@ -17,4 +17,25 @@ export const pokemonTypeColors: Record<string, string> = {
   dark: 'bg-gray-800 text-white',
   steel: 'bg-gray-500 text-white',
   fairy: 'bg-pink-300 text-black',
+};
+
+export const pokemonTypeHexColors: Record<string, string> = {
+  normal: '#9ca3af',
+  fire: '#ef4444',
+  water: '#3b82f6',
+  grass: '#22c55e',
+  electric: '#facc15',
+  ice: '#67e8f9',
+  fighting: '#b91c1c',
+  poison: '#9333ea',
+  ground: '#ca8a04',
+  flying: '#a5b4fc',
+  psychic: '#ec4899',
+  bug: '#84cc16',
+  rock: '#854d0e',
+  ghost: '#5b21b6',
+  dragon: '#4338ca',
+  dark: '#1f2937',
+  steel: '#6b7280',
+  fairy: '#f9a8d4',
 };

@@ -2,8 +2,8 @@ import { Logo, Navigation } from '@components';
 
 export const Header = () => {
   return (
-    <header className='relative z-10 bg-brand shadow-lg p-5'>
-      <div className='container mx-auto flex items-center justify-between'>
+    <header className='z-10 relative bg-brand shadow-lg p-5'>
+      <div className='flex justify-between items-center mx-auto container'>
         <Logo />
         <Navigation />
       </div>
