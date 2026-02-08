@@ -1,6 +1,6 @@
 import { PokemonListResponse, PokemonListItemWithId, PokemonDetail } from '@types';
 import { endpoints } from './endpoints';
-import { map } from 'lodash-es';
+import { compact, map } from 'lodash-es';
 import { famousPokemons } from '@constants';
 
 export const fetchPokemonList = async (limit = 20, offset = 0): Promise<PokemonListResponse> => {
@@ -26,7 +26,7 @@ export const fetchPokemon = async (nameOrId: string | number): Promise<PokemonDe
 export const fetchPokemonListsDetails = async (
   results: PokemonListItemWithId[],
 ): Promise<PokemonDetail[]> => {
-  const pokemonData = await Promise.all(
+  const pokemonData = await Promise.allSettled(
     map(results, async pokemon => {
       const res = await fetch(endpoints.getPokemon(pokemon.id));
 
@@ -36,11 +36,13 @@ export const fetchPokemonListsDetails = async (
     }),
   );
 
-  return pokemonData;
+  return compact(
+    map(pokemonData, result => (result.status === 'fulfilled' ? result.value : undefined)),
+  );
 };
 
 export const fetchFamousPokemons = async (): Promise<PokemonDetail[]> => {
-  const pokemonData = await Promise.all(
+  const pokemonData = await Promise.allSettled(
     map(famousPokemons, async pokemon => {
       const res = await fetch(endpoints.getPokemon(pokemon));
 
@@ -50,5 +52,7 @@ export const fetchFamousPokemons = async (): Promise<PokemonDetail[]> => {
     }),
   );
 
-  return pokemonData;
+  return compact(
+    map(pokemonData, result => (result.status === 'fulfilled' ? result.value : undefined)),
+  );
 };

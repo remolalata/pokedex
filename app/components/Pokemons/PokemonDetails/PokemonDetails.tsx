@@ -1,7 +1,9 @@
-import { getBattlePower, getImage } from '@/app/lib/helpers';
+import { pokemonTypeColors } from '@/app/lib/constants';
+import { getBattlePower, getImage, getPokemonMetrics } from '@/app/lib/helpers';
 import { PokemonDetail } from '@/app/lib/types';
 import { map } from 'lodash-es';
 import Image from 'next/image';
+import { PokemonMetric } from '../PokemonMetric';
 import { PokemonTypeBadges } from '../PokemonTypeBadges';
 
 interface PokemonDetailsProps {
@@ -9,8 +11,13 @@ interface PokemonDetailsProps {
 }
 
 export const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
+  const { hp, experience, hpMax, experienceMax } = getPokemonMetrics(pokemon);
+
+  const hpColorClass = pokemonTypeColors.grass.split(' ')[0];
+  const experienceColorClass = pokemonTypeColors.electric.split(' ')[0];
+
   return (
-    <div className='flex flex-col px-4 text-gray-950'>
+    <div className='flex flex-col gap-y-4 px-4 text-gray-950'>
       <div className='flex flex-col gap-y-2 w-full'>
         <h1 className='font-bold text-white text-4xl text-center capitalize'>{pokemon.name}</h1>
         <div className='relative h-40'>
@@ -37,6 +44,15 @@ export const PokemonDetails = ({ pokemon }: PokemonDetailsProps) => {
             ))}
           </ul>
         </div>
+      </div>
+      <div className='bg-white shadow-2xl p-4 rounded-2xl space-y-6'>
+        <PokemonMetric label='Health Points' value={hp} maxValue={hpMax} barColorClass={hpColorClass} />
+        <PokemonMetric
+          label='Experience'
+          value={experience}
+          maxValue={experienceMax}
+          barColorClass={experienceColorClass}
+        />
       </div>
     </div>
   );
