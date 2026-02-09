@@ -1,0 +1,53 @@
+{
+  "Metadata": {
+    "title": "Pokédex",
+    "description": "Explore Pokémon types, stats and abilities."
+  },
+  "Navigation": {
+    "home": "Home",
+    "pokedex": "Pokédex",
+    "legendaries": "Legendaries",
+    "openMenu": "Open menu"
+  },
+  "Hero": {
+    "title": "<strong>Find</strong> all your favorite <strong>Pokémon</strong>",
+    "subtitle": "You can know the type of Pokemon, its strengths, disadvantages and abilities",
+    "seePokemons": "See Pokemons"
+  },
+  "Pokedex": {
+    "heading": "800 <strong>Pokemons</strong> for you to choose your favorite",
+    "empty": "No Pokémon found.",
+    "loadFailed": "We could not load Pokémon right now. Please try again."
+  },
+  "Search": {
+    "placeholder": "Search Pokemon...",
+    "loadingSuggestions": "Loading suggestions..."
+  },
+  "Error": {
+    "sadPsyduckAlt": "Sad Psyduck",
+    "title": "Oh no! Something went wrong.",
+    "fallback": "We couldn’t catch that Pokémon. Try again!"
+  },
+  "Loader": {
+    "loadingPokemon": "Loading Pokémon..."
+  },
+  "NotFound": {
+    "imageAlt": "Not Found",
+    "title": "The rocket team",
+    "subtitle": "has won this time.",
+    "return": "Return"
+  },
+  "PokemonDetails": {
+    "battlePower": "Battle Power",
+    "abilities": "Abilities",
+    "healthPoints": "Health Points",
+    "experience": "Experience"
+  },
+  "Modal": {
+    "close": "Close modal"
+  },
+  "Footer": {
+    "templateBy": "Template by",
+    "usedUnder": "used under"
+  }
+}

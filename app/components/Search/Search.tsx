@@ -2,9 +2,9 @@
 
 import { useDebouncedCallback } from '@/app/hooks';
 import { usePokemonAutocomplete } from '@/app/hooks';
-import { SEARCH_PLACEHOLDER } from '@/app/lib/config';
 import { map, trim } from 'lodash-es';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 interface SearchProps {
@@ -12,6 +12,7 @@ interface SearchProps {
 }
 
 export const Search = ({ onSearch }: SearchProps) => {
+  const t = useTranslations('Search');
   const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,7 +38,7 @@ export const Search = ({ onSearch }: SearchProps) => {
       <div className='relative w-full md:max-w-2xs my-6'>
         <input
           type='text'
-          placeholder={SEARCH_PLACEHOLDER}
+          placeholder={t('placeholder')}
           value={value}
           onChange={handleChange}
           onFocus={() => setIsOpen(true)}
@@ -46,7 +47,7 @@ export const Search = ({ onSearch }: SearchProps) => {
         />
         {isOpen && trim(value).length > 0 && (loading || suggestions.length > 0) && (
           <ul className='absolute z-20 mt-2 w-full bg-white rounded-2xl shadow-md p-1.5 max-h-44 overflow-auto'>
-            {loading && <li className='px-2 py-1.5 text-xs text-gray-500'>Loading suggestions...</li>}
+            {loading && <li className='px-2 py-1.5 text-xs text-gray-500'>{t('loadingSuggestions')}</li>}
             {map(suggestions, suggestion => (
               <li key={suggestion.name}>
                 <button

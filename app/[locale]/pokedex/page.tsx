@@ -1,9 +1,11 @@
 import { fetchFamousPokemons } from '@api';
 import { Layout, Pokemons } from '@components';
+import { getTranslations } from 'next-intl/server';
 
 export const revalidate = 3600;
 
 export default async function PokedexPage() {
+  const t = await getTranslations('Pokedex');
   const famousPokemons = await fetchFamousPokemons();
   
   return (
@@ -13,9 +15,7 @@ export default async function PokedexPage() {
           {famousPokemons.length > 0 ? (
             <Pokemons pokemons={famousPokemons} />
           ) : (
-            <p className='text-center text-gray-600 mt-8'>
-              We could not load Pokémon right now. Please try again.
-            </p>
+            <p className='text-center text-gray-600 mt-8'>{t('loadFailed')}</p>
           )}
         </div>
       </div>

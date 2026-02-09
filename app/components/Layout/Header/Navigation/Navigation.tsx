@@ -1,21 +1,27 @@
 'use client';
 
-import { navItems } from '@config';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export const Navigation = () => {
   const pathname = usePathname();
+  const t = useTranslations('Navigation');
 
   const [isOpen, setIsOpen] = useState(false);
+  const navItems = [
+    { label: t('home'), href: '/' },
+    { label: t('pokedex'), href: '/pokedex' },
+    { label: t('legendaries'), href: '/legendaries' },
+  ];
 
   return (
     <>
       <nav className='h-6'>
-        <button className='md:hidden' onClick={() => setIsOpen(true)} aria-label='Open Menu'>
+        <button className='md:hidden' onClick={() => setIsOpen(true)} aria-label={t('openMenu')}>
           <Menu size={24} />
         </button>
 

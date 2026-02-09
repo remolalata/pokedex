@@ -4,18 +4,22 @@ import { usePokemonSearch } from '@/app/hooks';
 import { PokemonCard, PokemonCardLoader, Search, SearchError } from '@components';
 import { PokemonDetail } from '@types';
 import { map } from 'lodash-es';
+import { useTranslations } from 'next-intl';
 
 interface PokemonsProps {
   pokemons: PokemonDetail[]
 }
 
 export const Pokemons = ({ pokemons: _pokemons }: PokemonsProps) => {
+  const t = useTranslations('Pokedex');
   const { pokemons, loading, error, handleSearch } = usePokemonSearch(_pokemons);
 
   return (
     <div>
       <h1 className='text-2xl md:text-4xl font-medium text-center'>
-        800 <span className='font-bold'>Pokemons</span> for you to choose your favorite
+        {t.rich('heading', {
+          strong: chunks => <span className='font-bold'>{chunks}</span>,
+        })}
       </h1>
 
       <Search onSearch={handleSearch} />
@@ -24,7 +28,7 @@ export const Pokemons = ({ pokemons: _pokemons }: PokemonsProps) => {
       {error && <SearchError message={error} />}
 
       {!loading && !error && pokemons.length === 0 && (
-        <p className='text-center text-gray-600 mt-8'>No Pokémon found.</p>
+        <p className='text-center text-gray-600 mt-8'>{t('empty')}</p>
       )}
 
       {!loading && !error && pokemons.length > 0 && (

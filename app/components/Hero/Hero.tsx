@@ -1,9 +1,11 @@
 import { PokemonTypeButton } from '@components';
-import { SEE_POKEMONS } from '@config';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export const Hero = () => {
+  const t = useTranslations('Hero');
+
   return (
     <div className='p-5'>
       <div className='mx-auto container'>
@@ -13,19 +15,18 @@ export const Hero = () => {
           </div>
           <div className='space-y-3 lg:w-1/2 font-medium lg:text-left text-center'>
             <h1 className='text-5xl md:text-7xl leading-tight'>
-              <span className='font-semibold'>Find</span> all your favorite{' '}
-              <span className='font-semibold'>Pokémon</span>
+              {t.rich('title', {
+                strong: chunks => <span className='font-semibold'>{chunks}</span>,
+              })}
             </h1>
-            <p className='text-2xl lg:text-4xl lg:leading-tight'>
-              You can know the type of Pokemon, its strengths, disadvantages and abilities
-            </p>
+            <p className='text-2xl lg:text-4xl lg:leading-tight'>{t('subtitle')}</p>
             <Link href='/pokedex'>
               <PokemonTypeButton
                 variant='grass'
                 size='large'
                 className='mt-10 md:px-8 w-full md:w-auto'
               >
-                {SEE_POKEMONS}
+                {t('seePokemons')}
               </PokemonTypeButton>
             </Link>
           </div>

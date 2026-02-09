@@ -1,6 +1,10 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 export const PokemonCardLoader = () => {
+  const t = useTranslations('Loader');
+
   return (
     <div className='flex flex-col items-center justify-center my-10'>
       <div className='relative w-16 h-16 animate-spin-slow'>
@@ -10,7 +14,7 @@ export const PokemonCardLoader = () => {
           <div className='w-6 h-6 bg-white border-[4px] border-black rounded-full'></div>
         </div>
       </div>
-      <p className='mt-4 text-gray-600 text-sm font-medium'>Loading Pokémon...</p>
+      <p className='mt-4 text-gray-600 text-sm font-medium'>{t('loadingPokemon')}</p>
 
       <style jsx>{`
         .animate-spin-slow {

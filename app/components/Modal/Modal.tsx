@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import { useIsMobile } from '@/app/hooks';
@@ -19,6 +20,7 @@ const modalVariants = {
 };
 
 export const Modal = ({ isOpen, children, backgroundColor }: ModalProps) => {
+  const t = useTranslations('Modal');
   const router = useRouter();
   const isMobile = useIsMobile();
 
@@ -58,7 +60,12 @@ export const Modal = ({ isOpen, children, backgroundColor }: ModalProps) => {
             <div className='relative bg-white'>
               <div className='absolute z-0 inset-0 opacity-50' style={{ backgroundColor }}></div>
               <div className='z-10 relative flex justify-end p-4'>
-                <button onClick={() => router.back()} aria-label='Close modal'>
+                <button
+                  type='button'
+                  onClick={() => router.back()}
+                  aria-label={t('close')}
+                  className='cursor-pointer'
+                >
                   <X className='text-white' size={24} strokeWidth={4} />
                 </button>
               </div>

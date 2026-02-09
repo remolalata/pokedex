@@ -1,8 +1,12 @@
+import { useTranslations } from 'next-intl';
+
 export const Footer = () => {
+  const t = useTranslations('Footer');
+
   return (
     <footer className='p-5 text-center lg:text-left'>
       <p>
-        <span>Template by </span>
+        <span>{t('templateBy')} </span>
         <a
           href='https://www.figma.com/community/file/893705420616737018'
           target='_blank'
@@ -10,7 +14,7 @@ export const Footer = () => {
         >
           Emmanuel García
         </a>
-        <span>, used under </span>
+        <span>, {t('usedUnder')} </span>
         <a
           href='https://creativecommons.org/licenses/by/4.0/'
           target='_blank'

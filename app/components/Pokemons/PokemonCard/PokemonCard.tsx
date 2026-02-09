@@ -2,11 +2,11 @@
 
 import { pokemonTypeColors } from '@/app/lib/constants';
 import { getImage } from '@/app/lib/helpers';
+import { Link } from '@/i18n/navigation';
 import { PokemonStat, PokemonTypeBadges } from '@components';
 import { PokemonDetail } from '@types';
 import { filter, first, map } from 'lodash-es';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useMemo } from 'react';
 
 interface PokemonCardProps {
