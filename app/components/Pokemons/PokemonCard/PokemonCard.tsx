@@ -21,7 +21,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
   );
 
   return (
-    <Link href={`/pokemon/${pokemon.name}`}>
+    <Link href={`/pokemon/${pokemon.name}`} scroll={false}>
       <div className='relative flex bg-white shadow-xl rounded-lg overflow-hidden'>
         <div className='flex flex-col gap-y-4 p-4 w-1/3'>
           <div className='font-medium text-lg capitalize'>{pokemon.name}</div>

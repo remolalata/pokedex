@@ -11,6 +11,7 @@ type ModalProps = {
   isOpen: boolean;
   children: ReactNode;
   backgroundColor?: string;
+  background?: string;
 };
 
 const modalVariants = {
@@ -19,7 +20,7 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.95 },
 };
 
-export const Modal = ({ isOpen, children, backgroundColor }: ModalProps) => {
+export const Modal = ({ isOpen, children, backgroundColor, background }: ModalProps) => {
   const t = useTranslations('Modal');
   const router = useRouter();
   const isMobile = useIsMobile();
@@ -49,7 +50,7 @@ export const Modal = ({ isOpen, children, backgroundColor }: ModalProps) => {
 
           <motion.div
             className={`fixed z-50 shadow-xl
-              ${isMobile ? 'inset-x-0 bottom-0 rounded-t-2xl' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl w-full max-w-lg'}
+              ${isMobile ? 'inset-x-0 bottom-0 rounded-t-2xl' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl w-[90vw] max-w-4xl'}
               overflow-y-auto`}
             variants={modalVariants}
             initial='hidden'
@@ -57,8 +58,12 @@ export const Modal = ({ isOpen, children, backgroundColor }: ModalProps) => {
             exit='exit'
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className='relative bg-white'>
-              <div className='absolute z-0 inset-0 opacity-50' style={{ backgroundColor }}></div>
+            <div className='relative overflow-hidden'>
+              <div
+                className='absolute z-0 inset-0'
+                style={background ? { background } : { backgroundColor }}
+              ></div>
+              <div className='absolute z-0 inset-0 bg-black/10'></div>
               <div className='z-10 relative flex justify-end p-4'>
                 <button
                   type='button'

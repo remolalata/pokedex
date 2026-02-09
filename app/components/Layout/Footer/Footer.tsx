@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <footer className='p-5 text-center lg:text-left'>
       <p>
-        <span>{t('templateBy')} </span>
+        <span>{t('designBy')} </span>
         <a
           href='https://www.figma.com/community/file/893705420616737018'
           target='_blank'
@@ -14,7 +14,7 @@ export const Footer = () => {
         >
           Emmanuel García
         </a>
-        <span>, {t('usedUnder')} </span>
+        <span>. {t('licensedUnder')} </span>
         <a
           href='https://creativecommons.org/licenses/by/4.0/'
           target='_blank'
@@ -22,7 +22,7 @@ export const Footer = () => {
         >
           CC BY 4.0
         </a>
-        <span>.</span>
+        <span>, {t('viaFigma')}</span>
       </p>
     </footer>
   );

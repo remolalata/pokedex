@@ -47,7 +47,8 @@
     "close": "Close modal"
   },
   "Footer": {
-    "templateBy": "Template by",
-    "usedUnder": "used under"
+    "designBy": "Design by",
+    "licensedUnder": "Licensed under",
+    "viaFigma": "via Figma."
   }
 }
