@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokedex
 
-## Getting Started
+A modern Pokedex app built with Next.js App Router, TypeScript, Tailwind CSS, and PokeAPI.
 
-First, run the development server:
+## How the app works
+
+The app is split into localized routes under `app/[locale]` and uses a mix of server and client components:
+
+- Server-rendered pages fetch Pokemon data from PokeAPI through helpers in `app/lib/api`.
+- Client components handle interactive UI like search and sliders.
+- Internationalization is managed with `next-intl` using `messages/en.json`.
+- Shared helpers in `app/lib/helpers` normalize images, stats, and display data.
+
+## Core functionalities
+
+- Home page with featured content and navigation.
+- Pokedex list page with searchable Pokemon cards.
+- Pokemon details view (including modal route support).
+- Legendary page with first legendary spotlight (image, name, description).
+- Reusable metrics display (HP, experience, attack, defense, special attack, special defense).
+- Horizontal legendary slider with snap scrolling and arrow navigation.
+- Robust image fallback handling for missing sprite sources.
+- Localized UI strings via `next-intl`.
+
+## Tech stack
+
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- next-intl
+- Vitest + Testing Library
+
+## Project structure
+
+- `app/[locale]`: localized routes/pages
+- `app/components`: reusable UI components
+- `app/lib/api`: API fetch logic and endpoint builders
+- `app/lib/helpers`: transformation and UI helper utilities
+- `app/lib/constants`: shared constants (famous/legendary Pokemon, colors, etc.)
+- `messages`: translation dictionaries
+- `i18n`: routing/request configuration
+
+## Getting started
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Useful scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: run local development server
+- `npm run build`: create production build
+- `npm run start`: run production server
+- `npm run lint`: run ESLint
+- `npm run test`: run Vitest
+- `npm run test:watch`: run Vitest in watch mode
+- `npm run test:coverage`: run coverage
 
-## Learn More
+## Design credit
 
-To learn more about Next.js, take a look at the following resources:
+UI design inspired by the community Figma file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Pokedex - Figma Community](https://www.figma.com/community/file/893705420616737018/pokedex)
