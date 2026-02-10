@@ -4,7 +4,7 @@ export const Footer = () => {
   const t = useTranslations('Footer');
 
   return (
-    <footer className='p-5 text-center lg:text-left'>
+    <footer className='p-5 text-center'>
       <div className='mx-auto container'>
         <p>
           <span>{t('designBy')} </span>
