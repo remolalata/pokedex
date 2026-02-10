@@ -19,6 +19,18 @@
     "empty": "No Pokémon found.",
     "loadFailed": "We could not load Pokémon right now. Please try again."
   },
+  "Legendaries": {
+    "loadFailed": "We could not load legendary Pokémon right now. Please try again.",
+    "descriptionUnavailable": "Description unavailable.",
+    "metrics": {
+      "healthPoints": "Health Points",
+      "experience": "Experience",
+      "attack": "Attack",
+      "defense": "Defense",
+      "specialAttack": "Special Attack",
+      "specialDefense": "Special Defense"
+    }
+  },
   "Search": {
     "placeholder": "Search Pokemon...",
     "loadingSuggestions": "Loading suggestions..."

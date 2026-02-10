@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 interface LayoutProps {
   children: ReactNode;
-  variant?: 'default' | 'gradient' | 'dark';
+  variant?: 'default' | 'gradient' | 'dark' | 'legendaries';
 }
 
 export const Layout = ({ children, variant = 'default' }: LayoutProps) => {
@@ -12,6 +12,8 @@ export const Layout = ({ children, variant = 'default' }: LayoutProps) => {
       ? 'bg-gradient-to-b from-brand to-brand-foreground'
       : variant === 'dark'
         ? 'bg-brand-dark text-white'
+        : variant === 'legendaries'
+          ? 'bg-brand-legendaries text-white'
         : 'bg-brand-gray';
 
   return (

@@ -1,7 +1,7 @@
 import { PokemonListResponse, PokemonListItemWithId, PokemonDetail } from '@types';
 import { endpoints } from './endpoints';
 import { compact, find, map } from 'lodash-es';
-import { famousPokemons } from '@constants';
+import { famousPokemons, legendaryPokemons } from '@constants';
 
 type AbilityEffectEntry = {
   effect: string;
@@ -84,6 +84,22 @@ export const fetchPokemonListsDetails = async (
 export const fetchFamousPokemons = async (): Promise<PokemonDetail[]> => {
   const pokemonData = await Promise.allSettled(
     map(famousPokemons, async pokemon => {
+      const res = await fetch(endpoints.getPokemon(pokemon));
+
+      if (!res.ok) throw new Error(`Failed to fetch ${pokemon}`);
+
+      return res.json();
+    }),
+  );
+
+  return compact(
+    map(pokemonData, result => (result.status === 'fulfilled' ? result.value : undefined)),
+  );
+};
+
+export const fetchLegendaryPokemons = async (): Promise<PokemonDetail[]> => {
+  const pokemonData = await Promise.allSettled(
+    map(legendaryPokemons, async pokemon => {
       const res = await fetch(endpoints.getPokemon(pokemon));
 
       if (!res.ok) throw new Error(`Failed to fetch ${pokemon}`);

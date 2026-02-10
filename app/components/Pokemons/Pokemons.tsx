@@ -32,7 +32,7 @@ export const Pokemons = ({ pokemons: _pokemons }: PokemonsProps) => {
       )}
 
       {!loading && !error && pokemons.length > 0 && (
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6 md:gap-y-6 lg:gap-x-8 lg:gap-y-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 md:gap-x-6 md:gap-y-6 lg:gap-x-8 lg:gap-y-8'>
           {map(pokemons, pokemon => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}

@@ -21,7 +21,11 @@ export const Navigation = () => {
   return (
     <>
       <nav className='h-6'>
-        <button className='md:hidden' onClick={() => setIsOpen(true)} aria-label={t('openMenu')}>
+        <button
+          className='md:hidden text-brand-dark'
+          onClick={() => setIsOpen(true)}
+          aria-label={t('openMenu')}
+        >
           <Menu size={24} />
         </button>
 
@@ -32,7 +36,7 @@ export const Navigation = () => {
                 key={href}
                 href={href}
                 onClick={() => setIsOpen(false)}
-                className={`text-xl ${pathname === href ? 'border-b-2' : ''} hover:border-b-2 transition-all`}
+                className={`text-xl text-brand-dark ${pathname === href ? 'border-b-2' : ''} hover:border-b-2 transition-all`}
               >
                 <li>{label}</li>
               </Link>
@@ -53,7 +57,7 @@ export const Navigation = () => {
               key={href}
               href={href}
               onClick={() => setIsOpen(false)}
-              className={`text-2xl ${pathname === href ? 'border-b-2' : ''}`}
+              className={`text-2xl text-brand-dark ${pathname === href ? 'border-b-2' : ''}`}
             >
               {label}
             </Link>

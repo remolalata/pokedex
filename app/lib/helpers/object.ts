@@ -1,6 +1,14 @@
 import { PokemonDetail } from '@types';
 import { find } from 'lodash-es';
 
+type PokemonMetricKey =
+  | 'hp'
+  | 'experience'
+  | 'attack'
+  | 'defense'
+  | 'special-attack'
+  | 'special-defense';
+
 interface PokemonMetricMaxOptions {
   hpMax?: number;
   experienceMax?: number;
@@ -11,6 +19,16 @@ interface PokemonMetrics {
   experience: number;
   hpMax: number;
   experienceMax: number;
+}
+
+interface PokemonMetricOptions {
+  maxValue?: number;
+  maxValueOffset?: number;
+}
+
+interface PokemonMetricData {
+  value: number;
+  maxValue: number;
 }
 
 const normalizeHex = (hex: string) => {
@@ -54,14 +72,33 @@ export const getPokemonMetrics = (
   pokemon: PokemonDetail,
   options: PokemonMetricMaxOptions = {},
 ): PokemonMetrics => {
-  const hp = find(pokemon.stats, stat => stat.stat.name === 'hp')?.base_stat || 0;
-  const experience = pokemon.base_experience || 0;
+  const hpMetric = getPokemonMetric(pokemon, 'hp', { maxValue: options.hpMax });
+  const experienceMetric = getPokemonMetric(pokemon, 'experience', {
+    maxValue: options.experienceMax,
+  });
 
   return {
-    hp,
-    experience,
-    hpMax: options.hpMax ?? hp + 50,
-    experienceMax: options.experienceMax ?? experience + 50,
+    hp: hpMetric.value,
+    experience: experienceMetric.value,
+    hpMax: hpMetric.maxValue,
+    experienceMax: experienceMetric.maxValue,
+  };
+};
+
+export const getPokemonMetric = (
+  pokemon: PokemonDetail,
+  key: PokemonMetricKey,
+  options: PokemonMetricOptions = {},
+): PokemonMetricData => {
+  const maxValueOffset = options.maxValueOffset ?? 10;
+  const value =
+    key === 'experience'
+      ? pokemon.base_experience || 0
+      : find(pokemon.stats, stat => stat.stat.name === key)?.base_stat || 0;
+
+  return {
+    value,
+    maxValue: options.maxValue ?? value + maxValueOffset,
   };
 };
 

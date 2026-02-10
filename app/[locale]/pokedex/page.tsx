@@ -11,7 +11,7 @@ export default async function PokedexPage() {
   return (
     <Layout>
       <div className='p-5'>
-        <div className='container mx-auto lg:max-w-[800px]'>
+        <div className='container mx-auto lg:max-w-[1200px]'>
           {famousPokemons.length > 0 ? (
             <Pokemons pokemons={famousPokemons} />
           ) : (
