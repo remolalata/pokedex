@@ -50,7 +50,7 @@ export const Modal = ({ isOpen, children, backgroundColor, background }: ModalPr
 
           <motion.div
             className={`fixed z-50 shadow-xl
-              ${isMobile ? 'inset-x-0 bottom-0 rounded-t-2xl' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl w-[90vw] max-w-4xl'}
+              ${isMobile ? 'inset-x-0 bottom-0' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl w-[90vw] max-w-4xl'}
               overflow-y-auto`}
             variants={modalVariants}
             initial='hidden'
@@ -58,7 +58,7 @@ export const Modal = ({ isOpen, children, backgroundColor, background }: ModalPr
             exit='exit'
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <div className='relative overflow-hidden'>
+            <div className={`relative overflow-hidden ${isMobile ? 'min-h-dvh' : ''}`}>
               <div
                 className='absolute z-0 inset-0'
                 style={background ? { background } : { backgroundColor }}

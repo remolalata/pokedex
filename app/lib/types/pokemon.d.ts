@@ -44,6 +44,7 @@ export interface PokemonAbility {
   ability: NamedAPIResource;
   is_hidden: boolean;
   slot: number;
+  description?: string;
 }
 
 export interface PokemonCry {

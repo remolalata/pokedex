@@ -1,7 +1,22 @@
 import { PokemonListResponse, PokemonListItemWithId, PokemonDetail } from '@types';
 import { endpoints } from './endpoints';
-import { compact, map } from 'lodash-es';
+import { compact, find, map } from 'lodash-es';
 import { famousPokemons } from '@constants';
+
+type AbilityEffectEntry = {
+  effect: string;
+  short_effect: string;
+  language: {
+    name: string;
+  };
+};
+
+type AbilityResponse = {
+  effect_entries: AbilityEffectEntry[];
+};
+
+const normalizeAbilityDescription = (description: string) =>
+  description.replaceAll('\n', ' ').replaceAll('\f', ' ').replace(/\s+/g, ' ').trim();
 
 export const fetchPokemonList = async (limit = 20, offset = 0): Promise<PokemonListResponse> => {
   const res = await fetch(endpoints.listPokemons(limit, offset));
@@ -18,7 +33,32 @@ export const fetchPokemon = async (nameOrId: string | number): Promise<PokemonDe
 
   if (!res.ok) throw new Error(`Failed to fetch Pokémon with id or name: ${nameOrId}`);
 
-  const data = await res.json();
+  const data: PokemonDetail = await res.json();
+
+  const enrichedAbilities = await Promise.allSettled(
+    map(data.abilities, async pokemonAbility => {
+      const abilityRes = await fetch(pokemonAbility.ability.url);
+
+      if (!abilityRes.ok) return pokemonAbility;
+
+      const abilityData: AbilityResponse = await abilityRes.json();
+      const englishEffect = find(
+        abilityData.effect_entries,
+        effectEntry => effectEntry.language.name === 'en',
+      );
+
+      return {
+        ...pokemonAbility,
+        description: englishEffect
+          ? normalizeAbilityDescription(englishEffect.short_effect || englishEffect.effect)
+          : undefined,
+      };
+    }),
+  );
+
+  data.abilities = map(enrichedAbilities, (result, index) =>
+    result.status === 'fulfilled' ? result.value : data.abilities[index],
+  );
 
   return data;
 };
