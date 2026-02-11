@@ -29,7 +29,7 @@ export default async function RootLayout({
   modal,
 }: {
   children: ReactNode;
-  modal?: ReactNode;
+  modal: ReactNode;
 }) {
   const locale = await getLocale();
   const messages = await getMessages();
