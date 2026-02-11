@@ -23,12 +23,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type RootLayoutProps = {
+export default async function RootLayout({
+  children,
+  modal,
+}: {
   children: React.ReactNode;
   modal: React.ReactNode;
-};
-
-export default async function RootLayout({ children, modal }: RootLayoutProps) {
+}) {
   const locale = await getLocale();
   const messages = await getMessages();
 
