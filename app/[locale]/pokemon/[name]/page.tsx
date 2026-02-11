@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   return famousPokemons.map(pokemon => ({ name: pokemon.name }));
 }
 
-export default async function PokemonPage({ params }: { params: { name: string } }) {
+export default async function PokemonPage({ params }: { params: Promise<{ name: string }> }) {
   const { name } = await params;
   let pokemon: PokemonDetail;
 

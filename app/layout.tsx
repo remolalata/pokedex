@@ -25,8 +25,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
@@ -35,7 +37,10 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className=''>{children}</div>
+          <div className=''>
+            {children}
+            {modal}
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
