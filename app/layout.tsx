@@ -26,10 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({
   children,
-  modal,
 }: {
   children: ReactNode;
-  modal: ReactNode;
 }) {
   const locale = await getLocale();
   const messages = await getMessages();
@@ -40,7 +38,6 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className=''>
             {children}
-            {modal}
           </div>
         </NextIntlClientProvider>
       </body>
