@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages, getTranslations } from 'next-intl/server';
@@ -27,8 +28,8 @@ export default async function RootLayout({
   children,
   modal,
 }: {
-  children: React.ReactNode;
-  modal: React.ReactNode;
+  children: ReactNode;
+  modal?: ReactNode;
 }) {
   const locale = await getLocale();
   const messages = await getMessages();
