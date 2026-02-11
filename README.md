@@ -72,3 +72,7 @@ npm run dev
 UI design inspired by the community Figma file:
 
 - [Pokedex - Figma Community](https://www.figma.com/community/file/893705420616737018/pokedex)
+
+## Attributions
+
+- See `ATTRIBUTIONS.md` for third-party asset credits (including favicon attribution).
