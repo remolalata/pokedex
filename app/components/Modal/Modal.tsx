@@ -50,8 +50,11 @@ export const Modal = ({ isOpen, children, backgroundColor, background }: ModalPr
 
           <motion.div
             className={`fixed z-50 shadow-xl
-              ${isMobile ? 'inset-x-0 bottom-0' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl w-[90vw] max-w-4xl'}
-              overflow-y-auto`}
+              ${
+                isMobile
+                  ? 'inset-x-0 top-0 bottom-0 h-dvh max-h-dvh overflow-y-auto overscroll-contain'
+                  : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl w-[90vw] max-w-4xl max-h-[90vh] overflow-y-auto'
+              }`}
             variants={modalVariants}
             initial='hidden'
             animate='visible'
